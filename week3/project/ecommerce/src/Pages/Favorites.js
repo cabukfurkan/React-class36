@@ -45,7 +45,7 @@ const Favorites = () => {
                         ))}
                     </div>
                 ) : (
-                    <h3>Like some product</h3>
+                    <h3>❤️ Like some product ❤️</h3>
                 )}
             </main>
 
