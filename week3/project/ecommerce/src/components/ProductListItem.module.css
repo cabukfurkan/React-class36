@@ -1,6 +1,32 @@
+@keyframes example {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: 200px;
+    top: 0px;
+  }
+  50% {
+    left: 200px;
+    top: 200px;
+  }
+  75% {
+    left: 0px;
+    top: 200px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+
 .products_item {
   width: calc(25% - 16px);
   margin: 8px 8px 50px 8px;
+}
+.products_item:hover {
+  box-shadow: inset 5px 5px 0px 0px #54b3d6;
 }
 
 @media (max-width: 1600px) {
@@ -25,7 +51,6 @@
   height: 100%;
   justify-content: space-between;
   padding: 20px;
-  border: 2px solid black;
 }
 .product_image_container {
   position: relative;
@@ -42,6 +67,11 @@
   opacity: 1;
   display: block;
   backface-visibility: hidden;
+
+  position: relative;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-direction: alternate;
 }
 .hearth_container {
   transition: 0.5s ease;
