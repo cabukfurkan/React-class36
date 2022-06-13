@@ -1,0 +1,104 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.title_container {
+  margin-top: 20%;
+  align-items: center;
+  display: block;
+  flex-direction: row;
+}
+.title_container_title {
+  margin-right: auto;
+}
+h1 {
+  font-size: 1.5em;
+  margin: 0.67em 0;
+  display: block;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  border: 2px solid black;
+}
+.product_details_information {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  padding: 10px;
+}
+.product_details_image {
+  min-width: 50%;
+}
+.product_image_container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.product_image {
+  margin-bottom: auto;
+  margin-top: auto;
+  object-fit: contain;
+  width: 70%;
+  max-height: 80vh;
+  order: 0;
+  border-style: none;
+  opacity: 1;
+  display: block;
+  backface-visibility: hidden;
+}
+.product_details_description {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.product_image_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hearth_container {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.product_image_container:hover .hearth_container {
+  opacity: 1;
+}
+.product_image_container:hover .product_image {
+  opacity: 0.3;
+}
+.product_image_favorite_container {
+  width: 50px;
+}
+.product_image_favorite {
+  color: red;
+}
+@media (min-width: 600px) {
+  .product_details_information {
+    flex-direction: row-reverse;
+  }
+}
+
+@media (max-width: 600px) {
+  .product_details_information {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+}

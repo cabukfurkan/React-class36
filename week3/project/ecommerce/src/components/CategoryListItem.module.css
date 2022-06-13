@@ -1,0 +1,16 @@
+.categories_item {
+  border: none;
+  background-color: rgb(239, 239, 240);
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: 700;
+  margin: 2px;
+  padding: 12px;
+}
+.categories_item:hover {
+  background-color: #d3d3d6;
+}
+
+.category_active {
+  background-color: #9f9fa0;
+}

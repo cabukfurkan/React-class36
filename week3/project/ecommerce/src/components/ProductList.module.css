@@ -1,0 +1,8 @@
+.products {
+  display: flex;
+  flex-wrap: wrap;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+}
