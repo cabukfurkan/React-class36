@@ -4,31 +4,20 @@ import ProductListItem from "../components/ProductListItem";
 import styles from './Favorites.module.css'
 import Navbar from "../layouts/Navbar";
 import ReactLoading from 'react-loading';
+import useFetchAll from "../hooks/useFetchAll";
 
 
 const Favorites = () => {
     const [products, setProducts] = useState();
     const { favoriteProductIds } = useContext(FavoritesContext);
 
+    const apiUrl = `https://fakestoreapi.com/products/`
+
+    const { fetchDatas } = useFetchAll(apiUrl, setProducts, favoriteProductIds)
+
     useEffect(() => {
-        fetchData().catch((err) => console.log(err));
+        fetchDatas().catch((err) => console.log(err));
     }, [favoriteProductIds]);
-
-    const fetchData = async () => {
-        const data = await Promise.all(
-            favoriteProductIds.map(async (id) => {
-                const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-                if (!response.ok) {
-                    const message = `An error has occurred while getting data: ${response.status}`;
-                    throw new Error(message);
-                }
-                return response;
-            })
-        );
-
-        const jsonData = await Promise.all(data.map((result) => result.json()));
-        setProducts(jsonData);
-    };
 
     return (
         <div className={styles.container}>

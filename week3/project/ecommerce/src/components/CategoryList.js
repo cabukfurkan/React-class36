@@ -3,24 +3,18 @@ import CategoryListItem from './CategoryListItem'
 import styles from './CategoryList.module.css'
 import '../App.css'
 import ReactLoading from 'react-loading';
+import useFetch from '../hooks/useFetch';
 
 
 
 const CategoryList = ({ onSelectCategory, activeCategory }) => {
     const [categories, setCategories] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+
+    const apiUrl = 'https://fakestoreapi.com/products/categories'
+    const { isLoading, fetchData } = useFetch(apiUrl, setCategories)
 
     useEffect(() => {
-        (async () => {
-            try {
-                const response = await fetch('https://fakestoreapi.com/products/categories')
-                const data = await response.json()
-                setCategories(data)
-                setIsLoading(false)
-            } catch (error) {
-                alert('Loading Categories Failed')
-            }
-        })();
+        fetchData()
     }, [])
 
     return (

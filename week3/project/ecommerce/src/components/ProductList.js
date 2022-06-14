@@ -3,31 +3,18 @@ import ProductListItem from './ProductListItem.js'
 import styles from './ProductList.module.css'
 import '../App.css'
 import ReactLoading from 'react-loading';
+import useFetch from '../hooks/useFetch.js';
 
 
 const ProductList = ({ selectedCategory }) => {
     const [products, setProducts] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+
+    const apiURL = selectedCategory ? `https://fakestoreapi.com/products/category/${selectedCategory}` : 'https://fakestoreapi.com/products'
+    const { isLoading, fetchData } = useFetch(apiURL, setProducts)
 
     useEffect(() => {
-        (async () => {
-            try {
-                if (!selectedCategory) {
-                    const response = await fetch('https://fakestoreapi.com/products')
-                    const data = await response.json()
-                    setProducts(data)
-                    setIsLoading(false)
-                } else {
-                    const response = await fetch(`https://fakestoreapi.com/products/category/${selectedCategory}`)
-                    const data = await response.json()
-                    setProducts(data)
-                    setIsLoading(false)
-                }
-            } catch (error) {
-                alert('Loading Products Failed')
-            }
-        })();
-    }, [selectedCategory])
+        fetchData()
+    }, [apiURL])
 
     return (
         <div>

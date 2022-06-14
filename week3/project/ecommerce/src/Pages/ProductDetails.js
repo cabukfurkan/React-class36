@@ -7,32 +7,22 @@ import { ReactComponent as HeartRegular } from '../assets/heart-regular.svg';
 import { ReactComponent as HeartSolid } from '../assets/heart-solid.svg'
 import FavoritesContext from '../store/favorites-context';
 import Navbar from "../layouts/Navbar";
+import useFetch from "../hooks/useFetch";
 
 
 export default function ProductDetails() {
     const { id } = useParams()
 
     const [product, setProduct] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
 
     const favoritesCtx = useContext(FavoritesContext);
-
     const isFavoriteProduct = favoritesCtx.favoriteProductIds.find((id) => id === product.id);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const response = await fetch(`https://fakestoreapi.com/products/${id}`)
-                const data = await response.json()
-                console.log(data);
-                setProduct(data)
-                setIsLoading(false)
-            } catch (error) {
-                alert('Loading Products Failed')
-            }
-            console.log(product);
+    const apiUrl = `https://fakestoreapi.com/products/${id}`
+    const { isLoading, fetchData } = useFetch(apiUrl, setProduct)
 
-        })();
+    useEffect(() => {
+        fetchData()
     }, [id])
 
     return (
